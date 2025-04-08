@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ConversationButtons } from '@/components/ConversationButtons';
 
 type State = {
   message: string;
@@ -44,30 +45,10 @@ export default function Home() {
   return (
     <main style={{ padding: 20, fontFamily: 'sans-serif' }}>
       <h2>{state.message}</h2>
-      <div style={{ marginTop: 20 }}>
-        {state.options && Object.entries(state.options).map(([label, next]) => (
-          <button
-            key={label}
-            onClick={() => setCurrent(next)}
-            style={{
-              marginRight: 10,
-              padding: '8px 16px',
-              fontSize: 16,
-              cursor: 'pointer',
-            }}
-          >
-            {label}
-          </button>
-        ))}
-        {state.options === null && (
-          <button
-            onClick={() => setCurrent('start')}
-            style={{ marginRight: 10, padding: '8px 16px', fontSize: 16, cursor: 'pointer' }}
-          >
-            戻る
-          </button>
-        )}
-      </div>
+      <ConversationButtons
+        options={state.options}
+        onSelect={setCurrent}
+      />
     </main>
   );
 }
