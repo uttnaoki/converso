@@ -4,8 +4,16 @@
 
 JSON で定義された会話フロー
 
-## 起動方法
+## gh-pages
+
+https://uttnaoki.github.io/converso/
+
+## コマンド
 
 ```sh
+# 起動
 $ npm run dev
+
+# 静的ファイルを生成し、gh-pagesにpush
+$ npm run deploy
 ```
