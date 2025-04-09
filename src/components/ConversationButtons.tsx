@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 type ConversationButtonsProps = {
@@ -5,13 +7,30 @@ type ConversationButtonsProps = {
   onSelect: (next: string) => void;
 };
 
-export const ConversationButtons: React.FC<ConversationButtonsProps> = ({ options, onSelect }) => {
+export const ConversationButtons: React.FC<ConversationButtonsProps> = ({
+  options,
+  onSelect,
+}) => {
   return (
     <div style={{ marginTop: 20 }}>
-      {options && Object.entries(options).map(([label, next]) => (
+      {options &&
+        Object.entries(options).map(([label, next]) => (
+          <button
+            key={label}
+            onClick={() => onSelect(next)}
+            style={{
+              marginRight: 10,
+              padding: '8px 16px',
+              fontSize: 16,
+              cursor: 'pointer',
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      {options === null && (
         <button
-          key={label}
-          onClick={() => onSelect(next)}
+          onClick={() => onSelect('start')}
           style={{
             marginRight: 10,
             padding: '8px 16px',
@@ -19,17 +38,9 @@ export const ConversationButtons: React.FC<ConversationButtonsProps> = ({ option
             cursor: 'pointer',
           }}
         >
-          {label}
-        </button>
-      ))}
-      {options === null && (
-        <button
-          onClick={() => onSelect('start')}
-          style={{ marginRight: 10, padding: '8px 16px', fontSize: 16, cursor: 'pointer' }}
-        >
           戻る
         </button>
       )}
     </div>
   );
-}; 
+};
